@@ -16,7 +16,9 @@ convertir deberá estar almacenada en una variable.
     </head>
     <body>
         <?php
-        echo "<p>166,38 pesetas son 1 euro</p>";
+        $euro= 166.38;
+        $pesetas= 600/ $euro;
+        echo "<p>600 peseta es ", round($pesetas,2), "€ </p>";
         ?>
     </body>
 </html>

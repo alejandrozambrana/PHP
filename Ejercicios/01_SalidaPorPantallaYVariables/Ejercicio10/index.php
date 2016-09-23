@@ -7,11 +7,18 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Piramide</title>
     </head>
     <body>
+        <pre>
         <?php
-        // put your code here
+            echo "<br>";
+            echo "      *<br>";
+            echo "     ***<br>";
+            echo "    *****<br>";
+            echo "   *******<br>";
+            echo "  *********<br>";
         ?>
+        </pre>
     </body>
 </html>
