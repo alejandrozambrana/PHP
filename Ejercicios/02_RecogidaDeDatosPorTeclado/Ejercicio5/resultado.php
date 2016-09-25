@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <!--
-Ejercicio 3
-Realiza un conversor de pesetas a euros. La cantidad en pesetas que se quiere convertir se deberá
-introducir por teclado.
+Ejercicio 5
+Escribe un programa que calcule el área de un rectángulo.
 -->
 <html>
     <head>
       <meta charset="UTF-8">
-      <title></title>
+      <title>Resultado</title>
       <style>
         body{
           background-color: #ffffcc;
@@ -23,10 +22,10 @@ introducir por teclado.
     <body>
       <div id="contenedor">
         <?php
-          $a = $_GET['pesetas'];
-          $euro= 166.38;
-          $pesetas= $a/ $euro;
-          echo "<p>$a peseta es ", round($pesetas,2), "€ </p>";
+          $altu = $_GET['altura'];
+          $anchu = $_GET['anchura'];
+          $resultado= $anchu * $altu;
+          echo "<p>El area del rectangulo con <b>altura</b> $altu y <b>anchura</b> $anchu es de:<b> $resultado cm<sup>2</sup></b></p>";
         ?>
         </br></br>
         <a href="index.php">Volver</a>
