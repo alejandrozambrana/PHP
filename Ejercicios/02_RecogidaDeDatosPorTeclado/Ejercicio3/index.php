@@ -25,7 +25,7 @@ introducir por teclado.
         <h2>Conversor de pesetas a euros</h2>
         <form action="resultado.php" method="get">
           <label for="pesetas">Introduce pesetas</label>
-          <input type="number" id="pesetas" name="pesetas" min="0" autofocus="autofocus"><br>
+          <input type="number" id="pesetas" name="pesetas" min="0" step="1" autofocus="autofocus"><br>
           <input type="submit" value="Resultado">
         </form>
       </div>
