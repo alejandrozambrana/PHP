@@ -6,7 +6,7 @@ Escribe un programa que nos diga el horóscopo a partir del día y el mes de nac
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Ecuacion 2 grado</title>
+        <title>Horoscopo</title>
         <style>
             body{
               background-color: #ffffcc;
