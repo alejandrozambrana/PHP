@@ -13,21 +13,38 @@ Escribe un programa que nos diga el horóscopo a partir del día y el mes de nac
 
             }
             #contenedor{
-              width: 40%;
+              width: 100%;
               margin: auto; 
               text-align: center;
+            }
+            
+            #imagenPrincipal{
+              width: 100px;
             }
             
           </style>
     </head>
     <body>
-        <div id="contenedor">
+        <div id="contenedor">       
           <h1>Horoscopo</h1>
           <form action="index.php" method="get">
             <label for="dia">Introduze el dia en el que naciste:</label>
-            <input type="number" id="dia" name="dia" min="0" step="1" autofocus><br>
-            <label for="mes">Introduze el mes en que naciste(Escrito):</label>
-            <input type="text" id="mes" name="mes" ></br></br>
+            <input type="number" id="dia" name="dia" min="1" max="31" step="1" autofocus><br>
+            <select name="mes" placeholder="Seleccione un mes" >
+            <option selected disabled value="Seleccione el mes">Seleccione el mes</option>
+              <option value="enero">Enero</option>
+              <option value="febrero">Febrero</option>
+              <option value="marzo">Marzo</option>
+              <option value="abril">Abril</option>
+              <option value="mayo">Mayo</option>
+              <option value="junio">Junio</option>
+              <option value="julio">Julio</option>
+              <option value="agosto">Agosto</option>
+              <option value="septiembre">Septiembre</option>
+              <option value="octubre">Octubre</option>
+              <option value="noviembre">Noviembre</option>
+              <option value="diciembre">Diciembre</option></br></br>
+            </select>
             <input type="submit" value="Aceptar">
           </form></br>
           <?php
