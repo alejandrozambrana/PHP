@@ -27,15 +27,44 @@ satisfactoriamente”. Tendremos cuatro oportunidades para abrir la caja fuerte.
         margin-top: 5%;
         color: green;
       }
+      #combinacion{
+        margin: 0 auto;
+        color: lime;
+        font-size: 50px;
+        position: relative;
+        top:95px;
+        left:550px;
+      }
     </style>
   </head>
   <body>
     <?php
     $numero = $_GET['anadir'];
     $combinacion = $_GET['combinacion'];
+    $anadido = $numero;
+    $claveSeguridad = 1234;
+    $combinacion = ($combinacion * 10) + $anadido;        
+    $numeroDigitos = $combinacion; 
+    $contador = 0;
+    
+    do{
+      $numeroDigitos = floor($numeroDigitos/10);
+      
+      $contador++;
+    }while($numeroDigitos >0);
+    
+    if(($combinacion == $claveSeguridad) && ($contador == 4)){
+      echo "<div id=\"acceso\"><h1>ACCESO PERMITIDO</h1></div>";
+      $combinacion = 0;
+    } else if(($combinacion != $claveSeguridad) && ($contador == 4)){
+      echo "<div id=\"acceso\"><h1>ACCESO DENEGADO</h1></div>";
+      $combinacion = 0;
+    }
     
     ?>
-    
+    <div id="combinacion">
+      <?php echo $combinacion;?>
+    </div>
     <div id="cajaFuerte">
       <img src="caja fuerte.jpg" id="cajaFuerte" alt="cajaFuerte" title="cajaFuerte" usemap="#botonesMap">
       <map name="botonesMap">
@@ -51,29 +80,13 @@ satisfactoriamente”. Tendremos cuatro oportunidades para abrir la caja fuerte.
         <area shape="rect" coords="255,515,381,435" alt="cajaFuerte" href="index.php?anadir=0&&combinacion=<?=$combinacion?>">
       </map>
       
-    </div>
-    <?php
-        $anadido = $numero;
-        $claveSeguridad = 1234;
-        $combinacion = ($combinacion * 10) + $anadido;        
-        
-        if($combinacion == $claveSeguridad){
-          echo "<div id=\"acceso\"><h1>ACCESO PERMITIDO</h1></div>";
-          $combinacion = 0;
-        } else {
-    ?>
-          
-    <?php
-          
-        
-      ?>  
+    </div> 
         <form action="index.php" method="GET">
           <input type="hidden" name="anadir" value="<?php echo $anadir ; ?>">
           <input type="hidden" name="combinacion" value="<?php echo $combinacion ; ?>">
-          <input type="submit" value="Continuar">
         </form>
     <?php  
-        }
+        
     ?>
       
   </body>
