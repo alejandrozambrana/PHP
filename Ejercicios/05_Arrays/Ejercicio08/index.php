@@ -12,9 +12,6 @@ el array resultante.
     <meta charset="UTF-8">
     <title></title>
     <style>
-      div{
-        display: inline-block;
-      }
       table, td{
         border: 1px solid black;
         border-collapse: collapse;
@@ -30,6 +27,10 @@ el array resultante.
       $n = $_GET['n'];
       $contadorNumeros = $_GET['contadorNumeros'];
       $numeroTexto = $_GET['numeroTexto'];
+      $arrayPrimos = [];
+      $arrayNoPrimos = [];
+      $contadorPrimos = 0;
+      $contadorNoPrimos = 0;
       
       if(!isset($n)){
         $contadorNumeros = 0;
@@ -37,45 +38,74 @@ el array resultante.
       }
       
       // Muestra los números introducidos
-      if ($contadorNumeros == 15) {
+      if ($contadorNumeros == 10) {
         $numeroTexto = $numeroTexto . " " . $n; // añade el último número leído
         $numeroTexto = substr($numeroTexto, 2); // quita los dos primeros espacios de la cadena
         $numero = explode(" ", $numeroTexto); //combierte la cadena de caracteres en un array de numero separando los numeros por espacios
-        $arrayMovido = explode(" ", $numeroTexto);
         
                 
-        //muestra el array original
+        //pinta array Original
         echo "Array Original: ";
-        echo "<table>";
+        echo "<table><tr>";
+        //indice
+        for($i = 0; $i < 10; $i++){ 
+          echo "<td>" ,$i, "</td> ";
+        }
+        echo "</tr><tr>";
+        //muestra el array 
         foreach ($numero as $num) {
           echo "<td>" ,$num, "</td> ";
         }
-        echo "</table> </br>";
+        echo "</tr></table></br>";
         
-        //mete la ultimaposicion del array en una variable
-        $ultimoDigito = $arrayMovido[14];
+        //mete los primos en un array y los no primos en otro
+        for ($i = 0; $i < 10; $i++) {
+          $esPrimo = true;
         
-        //mueve todos los numeros del array hacia la derecha.
-        for($i = 14;$i > 0 ; $i--){
-          $arrayMovido[$i] = $numero[$i - 1];
+          for ($x = 2; $x < $numero[$i]; $x++) {
+            if(($numero[$i] % $x) == 0){
+              $esPrimo = false;
+            } 
+          }
+          if ($esPrimo) {
+            $arrayPrimos[$contadorPrimos] = $numero[$i];
+            $contadorPrimos++;
+          } else {
+            $arrayNoPrimos[$contadorNoPrimos] = $numero[$i];
+            $contadorNoPrimos++;
+          }
+        }    
+
+        //mete en las primera posiciones los primos
+        for($i = 0;$i < $contadorPrimos; $i++){
+          $numero[$i] = $arrayPrimos[$i];
         }
-        //pone la ultima poscion del array como primera
-        $arrayMovido[0] = $ultimoDigito;
         
-        //muestra el array movido
-        echo "Array Movido: ";
-        echo "<table>";
-        foreach ($arrayMovido as $num) {
-          echo "<td>", $num, "</td> ";
+        //mete en las ultimas posiciones los no primos
+        for($i = $contadorPrimos; $i < $contadorPrimos + $contadorNoPrimos; $i++){
+          $numero[$i] = $arrayNoPrimos[$i - $contadorPrimos];
         }
-        echo "</table>";
-      }
-        
       
+        //pinta array con los primos alante y los no primos atras
+        echo "Array modificado: ";
+        echo "<table><tr>";
+        //indice
+        for($i = 0; $i < 10; $i++){ 
+          echo "<td>" ,$i, "</td> ";
+        }
+        echo "</tr><tr>";
+        //muestra el array 
+        for ($i = 0; $i < 10; $i++) {
+          echo "<td>" ,$numero[$i], "</td> ";
+        }
+        echo "</tr></table></br>";
+        
+      }
+       
       // Pide número y añade el actual a la cadena
-      if (($contadorNumeros < 15) || (!isset($n))) {
+      if (($contadorNumeros < 10) || (!isset($n))) {
     ?>
-        <h1>Introduce un numero</h1>
+        <h1>Introduce 10 numero</h1>
         <form action="index.php" method="GET">
           <input type="number" name="n" id="numeroId" min="1"  step="1" autofocus>
           <input type="hidden" name="contadorNumeros" value="<?= ++$contadorNumeros ?>">
