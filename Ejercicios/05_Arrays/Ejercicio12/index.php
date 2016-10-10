@@ -13,44 +13,73 @@ y cuántas erróneas.
   </head>
   <body>
     <?php
-      if(isset($_GET['palabra'])){
-        
-        $diccionario = array (
-          'rojo' => 'red', 
-          'puerta' => 'door', 
-          'perro' => 'dog', 
-          'ventana' => 'windows', 
-          'verde' => 'green',
-          'gato' => 'cat', 
-          'lapiz' => 'pencil', 
-          'futbol' => 'soccer', 
-          'caballo' => 'horse', 
-          'casa' => 'house', 
-          'arbol' => 'tree', 
-          'año' => 'year',
-          'hombre' => 'men', 
-          'mujer' => 'woman', 
-          'lugar' => 'place', 
-          'libro' => 'book', 
-          'cara' => 'face', 
-          'ciudad' => 'city', 
-          'profesor' => 'teacher',
-          'guerra' => 'war', );
+      $diccionario = array (
+        'rojo' => 'red', 
+        'puerta' => 'door', 
+        'perro' => 'dog', 
+        'ventana' => 'windows', 
+        'verde' => 'green',
+        'gato' => 'cat', 
+        'lapiz' => 'pencil', 
+        'futbol' => 'soccer', 
+        'caballo' => 'horse', 
+        'casa' => 'house', 
+        'arbol' => 'tree', 
+        'año' => 'year',
+        'hombre' => 'men', 
+        'mujer' => 'woman', 
+        'lugar' => 'place', 
+        'libro' => 'book', 
+        'cara' => 'face', 
+        'ciudad' => 'city', 
+        'profesor' => 'teacher',
+        'guerra' => 'war', );
       
+      if(!isset($_GET['palabrasAleatorias'])){
         $palabra = $_GET['palabra'];
+        $español = [];
+        $palabrasAleatorias = [];
         
+        //mete en un array las palabras en español
+        foreach ($diccionario as $clave => $valor) {
+          $español[] = $clave;
+        }
         
-      }
-      
-      if(!isset($_GET['palabra'])){
+        //coje 5 palabras aleatoriamente
+        $contadorPalabras = 0;
+        do{
+          $palabraExtraida = $español[rand(0, 19)];
+          if(!+in_array($palabraExtraida, $palabrasAleatorias)){
+            $palabrasAleatorias[] = $palabraExtraida;
+            $contadorPalabras++;
+          }
+        }while($contadorPalabras < 5);
+        
     ?>
-    <h1>Introduce una palabra en español</h1>
+    <h1>Introduce la tradiccion en ingles</h1>
     <form action="index.php" method="GET">
-      <input type="text" name="palabra" id="palabraId" autofocus required>
+      <?php
+      for($i = 0; $i < 5; $i++){
+        echo $palabrasAleatorias[$i], " ";
+        echo '<input type="hidden" name="palabrasAleatorias[',$i,']" value="',$palabrasAleatorias[$i],'">';
+        echo '<input type="text" name="palabraIngles[',$i,']"><br>';
+      }
+      ?>
       <input type="submit" value="Continuar">
     </form>
     
     <?php
+      } else {
+        $palabrasAleatorias = $_GET['palabrasAleatorias'];
+        $palabraIngles  = $_GET['palabraIngles'];
+        
+        for($i = 0; $i < 5; $i++){
+          if($diccionario[$palabrasAleatorias[$i]] == $palabraIngles[$i]){
+            echo "<b>". $palabrasAleatorias[$i]. ": ". $palabraIngles[$i]. "</b> correcto</br>";
+          } else {
+            echo "<b>", $palabrasAleatorias[$i], " : ", $palabraIngles[$i], "</b> Es incorrecto</br>";
+          }
+        }
       }
     ?>
   </body>
