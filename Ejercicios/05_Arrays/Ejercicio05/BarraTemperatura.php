@@ -27,7 +27,7 @@ del diagrama se pueden dibujar a base de la concatenación de una imagen.
     ?>
       <!-- pide los datos-->
       <h1>Introduce la temperatura de los meses</h1>
-      <form action="index.php" method="GET">
+      <form action="Barratemperatura.php" method="GET">
         <table>
     <?php 
         for($i = 0; $i < 12; $i++){ //pide los datos de cada mes

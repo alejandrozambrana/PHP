@@ -75,7 +75,7 @@ muestra el contenido del array.
       if (($contadorNumeros < 15) || (!isset($n))) {
     ?>
         <h1>Introduce un numero</h1>
-        <form action="index.php" method="GET">
+        <form action="rotaArrayDerecha.php" method="GET">
           <input type="number" name="n" id="numeroId" min="1"  step="1" autofocus>
           <input type="hidden" name="contadorNumeros" value="<?= ++$contadorNumeros ?>">
           <input type="hidden" name="numeroTexto" value="<?= $numeroTexto . " " . $n ?>">

@@ -64,7 +64,7 @@ Los números que se han cambiado deben aparecer resaltados de un color diferente
       
     ?>
     <h1>Introduce un numero</h1>
-    <form action="index.php" method="GET">
+    <form action="cambiaArrayPorNumeroIntroducido.php" method="GET">
       Introduce que numero quieres cambiar:
       <input type="number" name="n" id="numeroId" step="1" autofocus></br>
       ¿Que numero quieres poner en su lugar?

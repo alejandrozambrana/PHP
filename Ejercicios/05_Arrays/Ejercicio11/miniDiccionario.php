@@ -52,7 +52,7 @@ en español y dará la correspondiente traducción en inglés.
       if(!isset($_GET['palabra'])){
     ?>
     <h1>Introduce una palabra en español</h1>
-    <form action="index.php" method="GET">
+    <form action="miniDiccionario.php" method="GET">
       <input type="text" name="palabra" id="palabraId" autofocus required>
       <input type="submit" value="Continuar">
     </form>

@@ -47,7 +47,7 @@ pares de un color y los impares de otro.
     ?>
       <!-- pide los datos-->
       <h1>Introduce 8 numero</h1>
-      <form action="index.php" method="GET">
+      <form action="paresyImpares.php" method="GET">
         <input type="number" name="n" id="numeroId" step="1" autofocus></br>
         <input type="hidden" name="contadorNumeros" value="<?= ++$contadorNumeros ?>">
         <input type="hidden" name="numeroTexto" value="<?= $numeroTexto . " " . $n ?>">

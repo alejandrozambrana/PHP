@@ -59,7 +59,7 @@ junto con las palabras “máximo” y “mínimo” al lado del máximo y del m
       if (($contadorNumeros < 10) || (!isset($n))) {
     ?>
         <h1>Introduce un numero</h1>
-        <form action="index.php" method="GET">
+        <form action="maximoyMinimo.php" method="GET">
           <input type="number" name="n" id="numeroId" min="1"  step="1" autofocus>
           <input type="hidden" name="contadorNumeros" value="<?= ++$contadorNumeros ?>">
           <input type="hidden" name="numeroTexto" value="<?= $numeroTexto . " " . $n ?>">

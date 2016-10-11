@@ -16,18 +16,38 @@ cumplan los siguientes requisitos:
   </head>
   <body>
     <?php
-    $arrayBidimencional = [][];
-      for($i = 0; $i < 9; $i++){
-        for($x = 0; $x < 6; $x++){
-          $arrayBidimencional[$i][$x] = rand(100, 999);
+    $arrayBidimencional = [];
+    $minimo = PHP_INT_MAX;
+      for($i = 0; $i < 6; $i++){
+        for($x = 0; $x < 9; $x++){
+          $numeroAleatorio = rand(100, 999);
+          if(!in_array($numeroAleatorio, $arrayBidimencional)){//comprueba que los numeros no estan el array ya
+            if($numeroAleatorio < $minimo ){//comprueba minimo
+              $minimo = $numeroAleatorio;
+              $minimoX = $x; //mete la posicion x del minimo en la variable
+              $minimoI = $i; //mete la posicion I del minimo en la variable
+            }
+            $arrayBidimencional[$i][$x] = $numeroAleatorio;
+          }
         }
       }
-      for($i = 0; $i < 9; $i++){
-        for($x = 0; $x < 6; $x++){
-        echo $arrayBidimencional[$i][$x];
+      
+      //Muestra array bidimencional
+      echo "<table>";
+      for($i = 0; $i < 6; $i++){
+        echo "<tr>";
+        for($x = 0; $x < 9; $x++){
+          if($arrayBidimencional[$i][$x] == $minimo){
+            echo "<td><span style=\"color: blue; font-weight:bold;\">", $arrayBidimencional[$i][$x], "</span></td>";
+          } else if (abs($x - $minimoX) == abs($i - $minimoI)){
+            echo "<td><span style=\"color: green; font-weight:bold;\">", $arrayBidimencional[$i][$x], "</span></td>";
+          } else {
+            echo "<td>", $arrayBidimencional[$i][$x], "</td>";
+          }
         }
+        echo "</td>";
       }
-       echo "Antonio gay";
+       echo "</table>";
     ?>
   </body>
 </html>

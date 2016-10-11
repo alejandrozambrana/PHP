@@ -55,7 +55,7 @@ Al final se debe mostrar el array resultante.
         }
         echo "</tr></table></br>";
     ?> 
-        <form action="index.php" method="GET">
+        <form action="cambiaPosicionInicialPorFinal.php" method="GET">
           Posicion Inicial: <input type="number" name="inicial" id="inicialId" min="0" max="9"  step="1" autofocus required>
           Posicion Final: <input type="number" name="final" id="finalId" min="0" max="9" step="1" required >
           <input type="hidden" name="contadorNumeros" value="12">

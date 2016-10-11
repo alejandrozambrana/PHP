@@ -57,7 +57,7 @@ y cuántas erróneas.
         
     ?>
     <h1>Introduce la tradiccion en ingles</h1>
-    <form action="index.php" method="GET">
+    <form action="escribetraduccionDiccionario.php" method="GET">
       <?php
       for($i = 0; $i < 5; $i++){
         echo $palabrasAleatorias[$i], " ";
