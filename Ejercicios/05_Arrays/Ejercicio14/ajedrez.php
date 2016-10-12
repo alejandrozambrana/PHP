@@ -38,21 +38,21 @@ se indican del 1 al 8.
     <?php
     $coordenadaX = $_GET['coordenadaX'];
     $coordenadaY = $_GET['coordenadaY'];
-    $coordenadaXInteger = ord($coordenadaX) - ord('a');
+    $coordenadaXInteger = ord($coordenadaX) - ord('a');//convierte la letra en numero mediante el codigo ascii
     $movimientoAlfil = "movimientoAlfil";
     $alfil = "alfil";
     $color = "blanco";
     
       echo '<table><tr>';
       echo '<td></td> <td>a</td> <td>b</td> <td>c</td> <td>d</td> <td>e</td> <td>f</td> <td>g</td> <td>h</td> <td></td> </tr>';
-      for($x = 0; $x < 8; $x++){
-        echo '<tr><td style="text-align: right;">'.(0 + $x).'</td>';
-        for($y = 0; $y < 8; $y++){
+      for($y = 0; $y < 8; $y++){
+        echo '<tr><td style="text-align: right;">'.(0 + $y).'</td>';
+        for($x = 0; $x < 8; $x++){
           echo "<td id=\"$color\">";
           
-         if(($coordenadaXInteger == $y) &&($coordenadaY == $x)){
+         if(($coordenadaXInteger == $x) &&($coordenadaY == $y)){// si las cordenadas son iguales a la introducidas pinta al alfil
             echo '<img src="alfil.png">';
-          } else if (abs($coordenadaXInteger - $y) == abs($coordenadaY - $x)){
+          } else if (abs($coordenadaXInteger - $x) == abs($coordenadaY - $y)){ //si a la cordenadas le restamos la introducidas nos da los movimientos que podemos hacer
             echo '<img src="alfilsemitransparente.png">';
           } else {
             echo '<img src="vacio.png">';
@@ -72,7 +72,7 @@ se indican del 1 al 8.
           } else {
             $color = "blanco";
           }
-        echo '<td style="text-align: left; ">'.(0 + $x).'</td></tr>';
+        echo '<td style="text-align: left; ">'.(0 + $y).'</td></tr>';
       }
       echo '<tr><td></td> <td>a</td> <td>b</td> <td>c</td> <td>d</td> <td>e</td> <td>f</td> <td>g</td> <td>h</td> <td></td> </tr>';
     ?>

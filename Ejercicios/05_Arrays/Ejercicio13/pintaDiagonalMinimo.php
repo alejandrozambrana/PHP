@@ -45,7 +45,7 @@ cumplan los siguientes requisitos:
             echo "<td>", $arrayBidimencional[$i][$x], "</td>";
           }
         }
-        echo "</td>";
+        echo "</tr>";
       }
        echo "</table>";
     ?>
