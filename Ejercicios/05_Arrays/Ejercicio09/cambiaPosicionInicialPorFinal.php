@@ -125,7 +125,7 @@ Al final se debe mostrar el array resultante.
       if (($contadorNumeros < 10) || (!isset($n))) {
     ?>
         <h1>Introduce 10 numero</h1>
-        <form action="index.php" method="GET">
+        <form action="cambiaPosicionInicialPorFinal.php" method="GET">
           <input type="number" name="n" id="numeroId" min="1"  step="1" autofocus>
           <input type="hidden" name="contadorNumeros" value="<?= ++$contadorNumeros ?>">
           <input type="hidden" name="numeroTexto" value="<?= $numeroTexto . " " . $n ?>">

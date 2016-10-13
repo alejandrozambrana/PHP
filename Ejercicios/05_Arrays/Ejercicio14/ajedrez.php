@@ -53,7 +53,7 @@ se indican del 1 al 8.
          if(($coordenadaXInteger == $x) &&($coordenadaY == $y)){// si las cordenadas son iguales a la introducidas pinta al alfil
             echo '<img src="alfil.png">';
           } else if (abs($coordenadaXInteger - $x) == abs($coordenadaY - $y)){ //si a la cordenadas le restamos la introducidas nos da los movimientos que podemos hacer
-            echo '<img src="alfilsemitransparente.png">';
+            echo '<img src="punto.png" style="width: 60px; height:40px;">';
           } else {
             echo '<img src="vacio.png">';
           }
