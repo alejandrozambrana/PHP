@@ -101,7 +101,7 @@ carrito de la compra. A continuación se muestra una captura de pantalla de una 
         foreach ($articulos as $clave => $elemento) {
         ?>
           
-          <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160" border="1"><div><br>
+          <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"><div><br>
           Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
           <form action="carritoDeLaCompra.php" method="GET">
             <input type="hidden" name="codigo" value="<?=$clave?>">
@@ -139,10 +139,11 @@ carrito de la compra. A continuación se muestra una captura de pantalla de una 
         <?php
         foreach ($articulos as $codigo => $elemento) {
           if($_SESSION['carrito'][$codigo] > 0){
-            $total = $total + $elemento['precio'];
+            $total = $total + ($_SESSION['carrito'][$codigo] * $elemento['precio']);
         ?>
           <tr>
-            <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160" border="1"><div><br>
+            <td><div id="imagenes">Cantidad: <?php echo $_SESSION['carrito'][$codigo]; ?></br>
+            <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"><div><br>
             Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
             <form action="carritoDeLaCompra.php" method="GET">
               <input type="hidden" name="codigo" value="<?=$codigo?>">
@@ -150,13 +151,14 @@ carrito de la compra. A continuación se muestra una captura de pantalla de una 
               <input type="submit" value="Eliminar">
             </form></td>
           </tr>
-          <tr>
-            <td>Total: <?php echo $total; ?> €</td>
-          </tr>
+          
         <?php
           }
         }
         ?>
+          <tr>
+            <td><p>Total: <?php echo $total; ?> €</p></td>
+          </tr>
       </table>
       <!-- -------------------------------------------------- -->
     </div>

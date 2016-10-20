@@ -115,6 +115,10 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
         text-decoration: underline;
         color: #4d4d4d;
       }
+      #formularios{
+        width: 70px;
+        display: inline-block;
+      }
     </style>
   </head>
   <body>
@@ -141,19 +145,21 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
         foreach ($articulos as $clave => $elemento) {
         ?>
           
-          <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160" border="1"><div><br>
+          <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"><div><br>
           Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
-          <form action="carritoDeLaCompra_Detalles.php" method="GET">
+          <div id="formularios">
+          <form action="carritoDeLaCompra_Detalles.php" method="GET" >
             <input type="hidden" name="codigo" value="<?=$clave?>">
             <input type="hidden" name="accion" value="detalles">
             <input type="submit" value="Detalles" class="botonDetalles">
-          </form>
+          </form></div>
+          <div id="formularios">
           <form action="carritoDeLaCompra.php" method="GET">
             <input type="hidden" name="codigo" value="<?=$clave?>">
             <input type="hidden" name="accion" value="comprar">
             <input type="submit" value="Comprar" class="botonComprar">
-          </form></td>
-
+          </form></div></td>
+          
         <?php
         }
         ?>
@@ -165,7 +171,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
       <?php
       $codigo = $_GET['codigo'];
       $accion = $_GET['accion'];
-      
+     
       if($accion == "comprar"){
         $_SESSION['carrito'][$codigo]++;
       }
@@ -186,8 +192,8 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
             $total = $total + ($_SESSION['carrito'][$codigo] * $elemento['precio']);
         ?>
           <tr>
-            <td><div id="imagenes">cantidad: <?php echo $_SESSION['carrito'][$codigo]; ?></br>
-            <img src="imagenes/<?=$elemento['imagen']?>" width="160" border="1"><div><br>
+            <td><div id="imagenes">Cantidad: <?php echo $_SESSION['carrito'][$codigo]; ?></br>
+            <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"><div><br>
             Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
             <form action="carritoDeLaCompra.php" method="GET">
               <input type="hidden" name="codigo" value="<?=$codigo?>">
@@ -200,7 +206,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
         }
         ?>
           <tr>
-            <td>Total: <?php echo $total; ?> €</td>
+            <td><p>Total: <?php echo $total; ?> €</p></td>
           </tr>
       </table>
       <!-- -------------------------------------------------- -->

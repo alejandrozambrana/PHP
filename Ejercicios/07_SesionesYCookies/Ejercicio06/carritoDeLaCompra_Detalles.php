@@ -48,7 +48,8 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
       
       #articulos tr td h3 {
         border-bottom: 2px solid #66ccff;
-        text-align: center;       
+        text-align: center; 
+        width: 800px;
       }
       
       #articulos{
@@ -69,7 +70,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
       }
       #carrito tr td h3 {
         border-bottom: 2px solid #66ccff;
-        text-align: center;       
+        text-align: center;  
       }
       .botonComprar{
         text-decoration: none;
@@ -115,49 +116,73 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
         text-decoration: underline;
         color: #4d4d4d;
       }
+      #botonVolver{
+        margin-left: 218px;
+        width: 70px;
+        display: inline-block;
+      }
+      #formularios{
+        width: 70px;
+        display: inline-block;
+      }
+      #camisetaImagen{
+        width: 250px;
+      }
+      #texto{
+        vertical-align: sub; 
+        padding: 20px;
+        width: 380px;
+      }
     </style>
   </head>
   <body>
     <?php
     //array con los datos de los articulos
     $articulos = [ 
-      "malaga" => [ "equipo" => "Malaga C.F.", "precio" => 75, "imagen" => "malaga.png"],
-      "city" => [ "equipo" => "Manchester City", "precio" => 75, "imagen" => "city.jpg"],
-      "united" => [ "equipo" => "Manchester United", "precio" => 75, "imagen" => "united.jpg"],
-      "psg" => [ "equipo" => "Paris Saint Germain", "precio" => 75, "imagen" => "psg.jpg"]
+      "malaga" => [ "equipo" => "Malaga C.F.", "precio" => 75, "imagen" => "malaga.png", "nombre" => "malaga"],
+      "city" => [ "equipo" => "Manchester City", "precio" => 75, "imagen" => "city.jpg", "nombre" => "city"],
+      "united" => [ "equipo" => "Manchester United", "precio" => 75, "imagen" => "united.jpg", "nombre" => "united"],
+      "psg" => [ "equipo" => "Paris Saint Germain", "precio" => 75, "imagen" => "psg.jpg","nombre" => "psg"]
     ];
     ?>
     <div id="nombreTienda">
       <h1>La Camisetilla</h1>
     </div>
     <div id="contenedor"> 
-      <!--muestra articulos-->
+      <!--muestra Detalles del articulo-->
       <table id="articulos">
         <tr>
-          <td colspan="4"><h3><img src="imagenes/icoCamiseta.png" width="20px;"> Articulos</h3></td>
+          <td colspan="4"><h3><img src="imagenes/icoCamiseta.png" width="20px">Detalles</h3></td>
         </tr>
         <tr>
         <?php
+        $codigo = $_GET['codigo'];
+        $accion = $_GET['accion'];
         foreach ($articulos as $clave => $elemento) {
+          if($codigo == $elemento['nombre']){
         ?>
           
-          <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160" border="1"><div><br>
-          Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
-          <form action="carritoDeLaCompra.php" method="GET">
-            <input type="hidden" name="codigo" value="<?=$clave?>">
-            <input type="hidden" name="accion" value="detalles">
-            <input type="submit" value="Detalles" class="botonDetalles">
-          </form>
-          <form action="carritoDeLaCompra.php" method="GET">
+          <td id="camisetaImagen"><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="360px" border="1"><div><br>
+          Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br></br>
+          <div id="formularios">
+          <form action="carritoDeLaCompra_Detalles.php" method="GET">
             <input type="hidden" name="codigo" value="<?=$clave?>">
             <input type="hidden" name="accion" value="comprar">
             <input type="submit" value="Comprar" class="botonComprar">
-          </form></td>
-
+          </form></div>
+          <div id="botonVolver" >
+          <form action="carritoDeLaCompra.php" method="GET">
+            <input type="submit" value="Volver" class="botonEliminar" >
+          </form></div></td>
+          
+          <td id="texto"><p><b>CAMISETA OFICIAL</b> de <?=$elemento['equipo']?> con tejido <b>100% poliéster</b></br>
+          Camiseta <b>original</b> utilizada por los jugadores del primer equipo</p></td>
         <?php
+          }
         }
         ?>
         </tr>
+        
       </table>
       <!-- -------------------------------------------------- -->
 
@@ -180,21 +205,22 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
       ?>
       <table id="carrito">
         <tr>
-          <td colspan="4"><h3> <img src="imagenes/carrito.png" width="20px;"> Carrito</h3></td>
+          <td colspan="4"><h3> <img src="imagenes/carrito.png" width="20px"> Carrito</h3></td>
         </tr>
 
         <?php
         foreach ($articulos as $codigo => $elemento) {
           if($_SESSION['carrito'][$codigo] > 0){
-            $total = $total + $elemento['precio'];
+            $total = $total + ($_SESSION['carrito'][$codigo] * $elemento['precio']);
         ?>
           <tr>
-            <td><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="160" border="1"><div><br>
+            <td><div id="imagenes">Cantidad: <?php echo $_SESSION['carrito'][$codigo]; ?>
+            <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"><div><br>
             Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
-            <form action="carritoDeLaCompra.php" method="GET">
+            <form action="carritoDeLaCompra_Detalles.php" method="GET">
               <input type="hidden" name="codigo" value="<?=$codigo?>">
               <input type="hidden" name="accion" value="eliminar">
-              <input type="submit" value="Eliminar"class="botonEliminar">
+              <input type="submit" value="Eliminar" class="botonEliminar">
             </form></td>
           </tr>
           <tr>

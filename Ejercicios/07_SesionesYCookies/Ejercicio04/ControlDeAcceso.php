@@ -4,6 +4,7 @@ session_start();// Inicia la sesión
 if(!isset($_SESSION['usuario']) && !isset($_SESSION['contraseña'])) {//comprueba que la variable no esta iniciada.
 $_SESSION['usuario'] = "";
 $_SESSION['contraseña'] = "";
+$_SESSION['logeado'] = false;
 }
 
 ?>
@@ -58,7 +59,8 @@ con un nombre de usuario y contraseña correctos.
         </div>
     <?php
       }else{
-        header("Refresh: 0; url=../Ejercicio03/sumaNoSuperiorA10000.php");//esto redirecciona a otra pagina
+        $_SESSION['logueado'] = true;
+        header("Refresh: 0; url=accederEjercicio05/carritoDeLaCompra.php");//esto redirecciona a otra pagina
       }
       if(($_SESSION['usuario'] == "alejandro") && ($_SESSION['contraseña'] != "1234")){//si la contaseña es diferente y el usuario correcto
         echo '<div id="contrasenaError">';
