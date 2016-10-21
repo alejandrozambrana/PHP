@@ -49,7 +49,7 @@ y cuántas erróneas.
         $contadorPalabras = 0;
         do{
           $palabraExtraida = $español[rand(0, 19)];
-          if(!+in_array($palabraExtraida, $palabrasAleatorias)){
+          if(!in_array($palabraExtraida, $palabrasAleatorias)){
             $palabrasAleatorias[] = $palabraExtraida;
             $contadorPalabras++;
           }
