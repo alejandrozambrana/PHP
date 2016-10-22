@@ -7,14 +7,14 @@ if(!isset($_SESSION['carrito'])){
   $_SESSION['carrito'] = ["malaga" => 0, "city" => 0, "united" => 0, "psg" => 0];
 }
 
+    
 ?>
 <!DOCTYPE html>
 <!--
-Ejercicio 6
-Amplía el programa anterior de tal forma que se pueda ver el detalle de un producto. Para ello, cada
-uno de los productos del catálogo deberá tener un botón Detalle que, al ser accionado, debe llevar
-al usuario a la vista de detalle que contendrá una descripción exhaustiva del producto en cuestión.
-Se podrán añadir productos al carrito tanto desde la vista de listado como desde la vista de detalle.
+Ejercicio 9
+Amplía el ejercicio 6 de tal forma que los productos que se pueden elegir para comprar se almacenen
+en cookies. La aplicación debe ofrecer, por tanto, las opciones de alta, baja y modificación de
+productos.
 -->
 <html>
   <head>
@@ -27,7 +27,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
     //array con los datos de los articulos
     if(!isset($_SESSION['articulos'])){
       $_SESSION['articulos'] = [ 
-        "malaga" => [ 
+      "malaga" => [ 
           "equipo" => "Malaga C.F.", 
           "precio" => 75, 
           "imagen" => "malaga.png", 
@@ -35,30 +35,31 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
           "Detalles" => "<b>CAMISETA OFICIAL</b> del Malaga C.F. con tejido <b>100% poliéster</b></br>Camiseta <b>original</b> utilizada por los jugadores del primer equipo"
                       . "</br>• Innovador patrón a rayas con un degradado desde el pecho a la patente inferior."
           ],
-        "city" => [ 
-            "equipo" => "Manchester City", 
-            "precio" => 75, 
-            "imagen" => "city.jpg", 
-            "nombre" => "city",
-            "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester City con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
-            ],
-        "united" => [ 
-            "equipo" => "Manchester United", 
-            "precio" => 75, 
-            "imagen" => "united.jpg", 
-            "nombre" => "united",
-            "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester United con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
-            ],
-        "psg" => [ 
-            "equipo" => "Paris Saint Germain", 
-            "precio" => 75, 
-            "imagen" => "psg.jpg",
-            "nombre" => "psg",
-            "Detalles" => "<b>CAMISETA OFICIAL</b> de Paris Saint Germain con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"]
+      "city" => [ 
+          "equipo" => "Manchester City", 
+          "precio" => 75, 
+          "imagen" => "city.jpg", 
+          "nombre" => "city",
+          "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester City con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
+          ],
+      "united" => [ 
+          "equipo" => "Manchester United", 
+          "precio" => 75, 
+          "imagen" => "united.jpg", 
+          "nombre" => "united",
+          "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester United con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
+          ],
+      "psg" => [ 
+          "equipo" => "Paris Saint Germain", 
+          "precio" => 75, 
+          "imagen" => "psg.jpg",
+          "nombre" => "psg",
+          "Detalles" => "<b>CAMISETA OFICIAL</b> de Paris Saint Germain con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"]
       ];
     }
     
     $articulos = $_SESSION['articulos'];
+
     ?>        
     <div id="nombreTienda">
       <h1>La Camisetilla</h1>
@@ -73,6 +74,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
         <?php
         $conta = 0;
         foreach ($articulos as $clave => $elemento) {
+          
         ?>
           
           <td>
@@ -100,8 +102,13 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
                 <input type="submit" value="comprar" class="botonComprar">
               </form>
             </div>
+            <div class="opciones">
+              <form action="administracion_producto.php" method="GET">
+                <input type="hidden" name="codigo" value="<?= $clave?>">
+                <input type="image" src="imagenes/opciones.png" width="18">
+              </form>
+            </div>
           </td>
-          
         <?php
         }
         ?>
@@ -157,6 +164,11 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
           </tr>
       </table>
       <!-- -------------------------------------------------- -->
+    </div>
+    <div id="alta">
+      <form action="alta_articulos.php" method="GET">
+        <input type="submit" value="Alta producto" class="botonDetalles">
+      </form>
     </div>
   </body>
 </html>

@@ -10,11 +10,10 @@ if(!isset($_SESSION['carrito'])){
 ?>
 <!DOCTYPE html>
 <!--
-Ejercicio 6
-Amplía el programa anterior de tal forma que se pueda ver el detalle de un producto. Para ello, cada
-uno de los productos del catálogo deberá tener un botón Detalle que, al ser accionado, debe llevar
-al usuario a la vista de detalle que contendrá una descripción exhaustiva del producto en cuestión.
-Se podrán añadir productos al carrito tanto desde la vista de listado como desde la vista de detalle.
+Ejercicio 9
+Amplía el ejercicio 6 de tal forma que los productos que se pueden elegir para comprar se almacenen
+en cookies. La aplicación debe ofrecer, por tanto, las opciones de alta, baja y modificación de
+productos.
 -->
 <html>
   <head>
@@ -44,21 +43,28 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
           if($codigo == $elemento['nombre']){
         ?>
           
-          <td id="camisetaImagen"><div id="imagenes"><img src="imagenes/<?=$elemento['imagen']?>" width="360px" border="1"><div><br>
-          Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br></br>
-          <div id="formularios">
-          <form action="carritoDeLaCompra_Detalles.php" method="GET">
-            <input type="hidden" name="codigo" value="<?=$clave?>">
-            <input type="hidden" name="accion" value="comprar">
-            <input type="submit" value="Comprar" class="botonComprar">
-          </form></div>
-          <div id="botonVolver" >
-          <form action="carritoDeLaCompra.php" method="GET">
-            <input type="submit" value="Volver" class="botonEliminar" >
-          </form></div></td>
+          <td id="camisetaImagen">
+            <div id="imagenes">
+              <img src="imagenes/<?=$elemento['imagen']?>" width="360px" border="1">
+            <div><br>
+            Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br></br>
+            <div id="formularios">
+              <form action="carritoDeLaCompra_Detalles.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$clave?>">
+                <input type="hidden" name="accion" value="comprar">
+                <input type="submit" value="Comprar" class="botonComprar">
+              </form>
+            </div>
+            <div id="botonVolver" >
+              <form action="carritoDeLaCompra.php" method="GET">
+                <input type="submit" value="Volver" class="botonEliminar" >
+              </form>
+            </div>
+          </td>
           
-          <td id="texto"><p><b>CAMISETA OFICIAL</b> de <?=$elemento['equipo']?> con tejido <b>100% poliéster</b></br>
-          Camiseta <b>original</b> utilizada por los jugadores del primer equipo</p></td>
+          <td id="texto">
+            <p><?=$elemento['Detalles']?></p>
+          </td>
         <?php
           }
         }
@@ -80,9 +86,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
       if($accion == "eliminar"){
         $_SESSION['carrito'][$codigo] = 0;
       }
-      if($accion == "detalles"){
-        
-      }
+
       $total = 0;
       ?>
       <table id="carrito">
@@ -96,14 +100,18 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
             $total = $total + ($_SESSION['carrito'][$codigo] * $elemento['precio']);
         ?>
           <tr>
-            <td><div id="imagenes">Cantidad: <?php echo $_SESSION['carrito'][$codigo]; ?>
-            <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"><div><br>
-            Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
-            <form action="carritoDeLaCompra_Detalles.php" method="GET">
-              <input type="hidden" name="codigo" value="<?=$codigo?>">
-              <input type="hidden" name="accion" value="eliminar">
-              <input type="submit" value="Eliminar" class="botonEliminar">
-            </form></td>
+            <td>
+              <div id="imagenes">
+                Cantidad: <?php echo $_SESSION['carrito'][$codigo]; ?>
+                <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1">
+              <div><br>
+              Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
+              <form action="carritoDeLaCompra_Detalles.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="eliminar">
+                <input type="submit" value="Eliminar" class="botonEliminar">
+              </form>
+            </td>
           </tr>
           <tr>
             <td>Total: <?php echo $total; ?> €</td>
