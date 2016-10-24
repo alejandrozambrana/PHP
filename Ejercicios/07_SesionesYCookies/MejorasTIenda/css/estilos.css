@@ -1,0 +1,142 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 22-oct-2016, 16:16:02
+    Author     : Zambrana
+*/
+body{
+  background-color: #e6e6e6;
+}
+#nombreTienda{
+  text-align: center;
+  background-color: #66ccff;
+  width: 400px;
+  height: 50px;
+  margin: 0 auto;
+  border-radius: 50px;
+  box-shadow: 2px 2px 5px 2px grey;
+}
+
+#contenedor{
+  margin: 0px auto;
+  width:90%;
+  background-color: white;
+  margin-top:50px;
+  margin-bottom:30px;
+  margin-left: 60px;
+  box-shadow: 5px 5px 5px #737373;
+  border-radius:10px;
+  position: absolute;
+  overflow: auto;
+}
+
+#articulos tr td h3 {
+  border-bottom: 2px solid #66ccff;
+  text-align: center; 
+  width: 800px;
+}
+#articulos tr td{
+  float: left;
+}
+
+#articulos{
+  margin-left: 100px;
+  float: left;
+  width: 800px;
+}
+
+#imagenes {
+  margin: 0 auto;
+  margin: 10px;
+}
+#carrito{
+  margin-right: 100px;
+  float: right;
+}
+#carrito tr td{
+  width: 250px;
+}
+#carrito tr td h3 {
+  border-bottom: 2px solid #66ccff;
+  text-align: center;       
+}
+.botonComprar{
+  text-decoration: none;
+  padding: 5px;
+  font-weight: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #66ccff;
+  border-radius: 16px;
+  border: 2px solid #66ccff;
+  box-shadow: 2px 2px 6px 1px #737373;
+}
+.botonComprar:hover{
+  text-decoration: none;
+  padding: 5px;
+  font-weight: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #0099e6;
+  border-radius: 16px;
+  border: 2px solid #0099e6;
+  box-shadow: 2px 2px 6px 1px #737373;
+}
+.botonDetalles{
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.botonDetalles:hover{
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #4d4d4d;
+}
+.botonEliminar{
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+}
+.botonEliminar:hover{
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #4d4d4d;
+}
+.formularios{
+  width: 60px;
+  display: inline-block;
+}
+.opciones{
+  margin-left: 20px;
+  width: 20px;
+  display: inline-block;
+}
+#camisetaImagen{
+  width: 360px;
+}
+#texto{
+  vertical-align: sub; 
+  padding-left: 50px;
+  width: 380px;
+}
+#botonVolver{
+  margin-left: 360px;
+  width: 70px;
+  display: inline-block;
+}
+#modificar{
+  position: absolute;
+  top:100px;
+  left:550px;
+}
+#alta{
+  position: relative;
+  width:5%;
+  top:95%;
+  left:89%;
+}
