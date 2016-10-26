@@ -30,13 +30,14 @@ body{
   box-shadow: 5px 5px 5px #737373;
   border-radius:10px;
   position: absolute;
-  overflow: auto;
+  
 }
 
 #articulos tr td h3 {
   border-bottom: 2px solid #66ccff;
   text-align: center; 
   width: 800px;
+  
 }
 #articulos tr td{
   float: left;
@@ -46,22 +47,37 @@ body{
   margin-left: 100px;
   float: left;
   width: 800px;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+}
+
+#articulos-inline{
+  display:-webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 #imagenes {
   margin: 0 auto;
   margin: 10px;
+  
 }
 #carrito{
   margin-right: 100px;
   float: right;
+  
 }
 #carrito tr td{
-  width: 250px;
+  width: 250px;  
 }
 #carrito tr td h3 {
   border-bottom: 2px solid #66ccff;
-  text-align: center;       
+  text-align: center;    
+  
 }
 .botonComprar{
   text-decoration: none;
@@ -73,6 +89,7 @@ body{
   border-radius: 16px;
   border: 2px solid #66ccff;
   box-shadow: 2px 2px 6px 1px #737373;
+  
 }
 .botonComprar:hover{
   text-decoration: none;
@@ -110,6 +127,7 @@ body{
 .formularios{
   width: 60px;
   display: inline-block;
+  
 }
 .opciones{
   margin-left: 20px;
@@ -139,4 +157,12 @@ body{
   width:5%;
   top:95%;
   left:89%;
+}
+.vaciarCarro{
+  border: none;
+  background-color: transparent;
+  text-decoration: underline;
+  color: #4d4d4d;
+  margin-left: 160px;
+  margin-bottom: 10px;
 }

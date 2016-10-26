@@ -27,7 +27,7 @@ and open the template in the editor.
       $_SESSION['articulos'][$codigo]['Detalles'] = $detallesIntroducido;
       $_SESSION['articulos'][$codigo]['imagen'] = $imagenIntroducido;
       
-      header("Refresh: 0; url=carritoDeLaCompra.php");//esto redirecciona a otra pagina
+      header("Refresh: 0; url=index.php");//esto redirecciona a otra pagina
     ?>
   </body>
 </html>

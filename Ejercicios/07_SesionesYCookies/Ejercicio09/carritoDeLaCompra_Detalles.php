@@ -56,7 +56,7 @@ productos.
               </form>
             </div>
             <div id="botonVolver" >
-              <form action="carritoDeLaCompra.php" method="GET">
+              <form action="index.php" method="GET">
                 <input type="submit" value="Volver" class="botonEliminar" >
               </form>
             </div>

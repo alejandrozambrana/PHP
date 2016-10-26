@@ -65,7 +65,7 @@ productos.
               </table>
             </form>
             <div id="botonVolver" >
-              <form action="carritoDeLaCompra.php" method="GET">
+              <form action="index.php" method="GET">
                 <input type="submit" value="volver" class="botonEliminar" >
               </form>
             </div>

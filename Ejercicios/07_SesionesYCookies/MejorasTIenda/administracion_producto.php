@@ -58,7 +58,7 @@ if(!isset($_SESSION['carrito'])){
               </form>
             </div>
             <div id="botonVolver" >
-            <form action="carritoDeLaCompra.php" method="GET">
+            <form action="index.php" method="GET">
               <input type="submit" value="volver" class="botonEliminar" >
             </form>
             </div>
@@ -120,7 +120,7 @@ if(!isset($_SESSION['carrito'])){
       if($accion == "eliminarProducto"){
         unset($_SESSION['carrito'][$codigo]);
         unset($_SESSION['articulos'][$codigo]);
-         header("Refresh: 0; url=carritoDeLaCompra.php");//esto redirecciona a otra pagina
+         header("Refresh: 0; url=index.php");//esto redirecciona a otra pagina
       }
       
       if($accion == "modificarCantidad"){

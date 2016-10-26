@@ -62,7 +62,7 @@ productos.
               </form>
             </div>
             <div id="botonVolver" >
-            <form action="carritoDeLaCompra.php" method="GET">
+            <form action="index.php" method="GET">
               <input type="submit" value="volver" class="botonEliminar" >
             </form>
             </div>
@@ -124,7 +124,7 @@ productos.
       if($accion == "eliminarProducto"){
         unset($_SESSION['carrito'][$codigo]);
         unset($_SESSION['articulos'][$codigo]);
-         header("Refresh: 0; url=carritoDeLaCompra.php");//esto redirecciona a otra pagina
+         header("Refresh: 0; url=index.php");//esto redirecciona a otra pagina
       }
 
       $total = 0;
