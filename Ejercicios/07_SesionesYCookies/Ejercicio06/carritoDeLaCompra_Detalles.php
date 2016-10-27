@@ -53,7 +53,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
             <input type="submit" value="Comprar" class="botonComprar">
           </form></div>
           <div id="botonVolver" >
-          <form action="carritoDeLaCompra.php" method="GET">
+            <form action="index.php" method="GET">
             <input type="submit" value="Volver" class="botonEliminar" >
           </form></div></td>
           

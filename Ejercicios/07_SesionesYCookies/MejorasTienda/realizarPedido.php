@@ -78,7 +78,7 @@ $_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" =
             <td class="centrarDatosProductos">
               <form action="carritoDeLaCompra_Detalles.php" method="GET">
                 <label for="cantidad">Cantidad:</label>
-                <input type="number" id="cantidad" name="cantidad" value="<?= $_SESSION['carrito'][$codigo]; ?>" max="99" style="width: 35px; margin-bottom: 5px;" >
+                <input type="number" id="cantidad" name="cantidad" value="<?= $_SESSION['carrito'][$codigo]; ?>" min="0" max="99" style="width: 35px; margin-bottom: 5px;" >
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
                 <input type="hidden" name="accion" value="modificarCantidad">
                 <input type="submit" value="Ok" class="botonDetalles">

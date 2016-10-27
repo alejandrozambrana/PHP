@@ -36,21 +36,21 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
                       . "</br>• Innovador patrón a rayas con un degradado desde el pecho a la patente inferior."
           ],
         "city" => [ 
-            "equipo" => "Manchester City", 
+            "equipo" => "Man. City", 
             "precio" => 75, 
             "imagen" => "city.jpg", 
             "nombre" => "city",
             "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester City con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
             ],
         "united" => [ 
-            "equipo" => "Manchester United", 
+            "equipo" => "Man. United", 
             "precio" => 75, 
             "imagen" => "united.jpg", 
             "nombre" => "united",
             "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester United con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
             ],
         "psg" => [ 
-            "equipo" => "Paris Saint Germain", 
+            "equipo" => "P.S. Germain", 
             "precio" => 75, 
             "imagen" => "psg.jpg",
             "nombre" => "psg",
@@ -94,7 +94,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
               </form>
             </div>
             <div class="formularios">
-              <form action="carritoDeLaCompra.php" method="GET">
+              <form action="index.php" method="GET">
                 <input type="hidden" name="codigo" value="<?= $clave?>">
                 <input type="hidden" name="accion" value="comprar">
                 <input type="submit" value="comprar" class="botonComprar">
@@ -141,7 +141,7 @@ Se podrán añadir productos al carrito tanto desde la vista de listado como des
                 <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1">
               <div><br>
               Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
-              <form action="carritoDeLaCompra.php" method="GET">
+              <form action="index.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
                 <input type="hidden" name="accion" value="eliminar">
                 <input type="submit" value="Eliminar"class="botonEliminar">

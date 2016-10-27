@@ -36,21 +36,21 @@ productos.
                       . "</br>• Innovador patrón a rayas con un degradado desde el pecho a la patente inferior."
           ],
       "city" => [ 
-          "equipo" => "Manchester City", 
+          "equipo" => "Man. City", 
           "precio" => 75, 
           "imagen" => "city.jpg", 
           "nombre" => "city",
           "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester City con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
           ],
       "united" => [ 
-          "equipo" => "Manchester United", 
+          "equipo" => "Man. United", 
           "precio" => 75, 
           "imagen" => "united.jpg", 
           "nombre" => "united",
           "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester United con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
           ],
       "psg" => [ 
-          "equipo" => "Paris Saint Germain", 
+          "equipo" => "P.S. Germain", 
           "precio" => 75, 
           "imagen" => "psg.jpg",
           "nombre" => "psg",
