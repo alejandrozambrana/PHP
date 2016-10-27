@@ -71,10 +71,7 @@ if(!isset($_SESSION['carrito'])){
       <!-- -------------------------------------------------- -->
 
       <!--carrito de la compra -->
-      <?php
-      $codigo = $_GET['codigo'];
-      $accion = $_GET['accion'];
-      
+      <?php      
       if($accion == "comprar"){
         $_SESSION['carrito'][$codigo]++;
       }

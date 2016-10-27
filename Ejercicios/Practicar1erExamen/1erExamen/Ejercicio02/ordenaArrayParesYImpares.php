@@ -87,6 +87,7 @@ los impares, se completará con los números que queden.
           $contador3 += 2;
         }
       }
+      
       echo 'Array Resultado';      
       /////////array modificado////////////
       echo '<table>';

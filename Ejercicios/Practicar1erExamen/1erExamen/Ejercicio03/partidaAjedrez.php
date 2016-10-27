@@ -52,14 +52,14 @@ El valor de cada pieza se debe almacenar en un array asociativo.
       } else {
         $sumaNegros += $valorSacado;
       }
-      //si es peon escribre peon y si no es un peon pone peones y escribre las tiradas
+      //si es peon escribre peon y si no es un peon pone peones y escribe las tiradas
       if($piezaSacada == 'Peon'){
         $tirada = "$piezaSacada $colorSacado ($valorSacado peon)";
       } else {
         $tirada = "$piezaSacada $colorSacado ($valorSacado peones)";
       }
  
-      //mete los tiradas en un array
+      //mete las tiradas en un array
       $figuras[$contador] = $tirada;
       $contador++;  
       

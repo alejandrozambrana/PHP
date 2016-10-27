@@ -6,8 +6,13 @@ session_start();// Inicia la sesión
 if(!isset($_SESSION['carrito'])){
   $_SESSION['carrito'] = ["malaga" => 0, "city" => 0, "united" => 0, "psg" => 0];
 }
-$_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" => 0.95];
+$_SESSION['cupones'] = ["alejandro" => 20, "whopper" => 10, "descuentillo" => 5];
 
+//hace que se pueda poner un gasto de envio con un cupon descuento
+if(!isset($_SESSION['cantidadDescontada'])){
+  $_SESSION['porciento'] = 0;
+  $_SESSION['cantidadDescontada'] = 0;
+}
 ?>
 <!DOCTYPE html>
 <!--
@@ -40,12 +45,16 @@ $_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" =
         $_SESSION['carrito'][$codigo] = $_GET['cantidad'];
       }
       
+      $cantidadDescontada = 0;
+      $porciento = 0;
       if($_GET['accion'] == "aplicarCupon"){
-        foreach ($_SESSION['cupones'] as $descuento => $cantidad){
+        foreach ($_SESSION['cupones'] as $descuento => $porcentaje){
           if($_GET['cupon'] == $descuento){
             foreach ($articulos as $codigo => $elemento) {
               if($_SESSION['carrito'][$codigo] > 0){
-                $articulos[$codigo]['precio'] = $articulos[$codigo]['precio'] * $cantidad;
+                $porciento = $porcentaje;
+                $cantidadDescontada = $articulos[$codigo]['precio'] * ($porcentaje/100);
+                $articulos[$codigo]['precio'] = ($articulos[$codigo]['precio'] - $cantidadDescontada);
               }
             }
           }
@@ -95,7 +104,9 @@ $_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" =
         if($opcionesCarrito == 1){
         ?>
           <tr>
-            <td><p>Total: <?php echo $total; ?> €</p></td>
+            <td><p>Porcentaje: <?php echo $porciento; ?>% </br>
+                Descuento: -<?php echo $cantidadDescontada; ?> € </br>
+                Total: <?php echo $total;?> €</p></td>
           </tr>
           <tr>
             <td>
@@ -131,8 +142,8 @@ $_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" =
           <td colspan="4"><h3> <img src="imagenes/envio.png" width="20px"> Envio</h3></td>
         </tr>
         <tr>
-          <td class="centrarDatosProductos">
-            <form action="realizarPedido.php" method="GET">
+          <td>
+            <form action="realizarPedido.php" method="GET" style="margin-left: 20px;">
               <input type="text" id="cupon" name="cupon" style="width: 100px;">
               <input type="hidden" name="codigo" value="<?=$codigo?>">
               <input type="hidden" name="accion" value="aplicarCupon">
@@ -140,6 +151,23 @@ $_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" =
             </form>
           </td>
         </tr>
+        <!-- gastos de envio 
+        <tr>
+         <td></br>
+            <form action="realizarPedido.php" method="GET" style="text-align: center;">
+              <label for="gastosEnvio">Gastos de envio:</label><br>
+              <select id="gastosEnvio" name="gastosEnvio" >
+                <option value="6">España</option>
+                <option value="12">Europa</option>
+                <option value="20">China</option>
+                <option value="20">EEUU</option>
+              </select>
+              <input type="hidden" name="codigo" value="<?=$codigo?>">
+              <input type="hidden" name="accion" value="gastosEnvio">
+              <input type="submit" value="ok" class="botonEliminar">
+            </form>
+          </td>
+        </tr>-->
         
       </table>
       <!-- -------------------------------------------------- -->
