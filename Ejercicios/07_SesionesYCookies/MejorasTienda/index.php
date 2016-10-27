@@ -82,9 +82,8 @@ if(!isset($_SESSION['carrito'])){
                 <input type="submit" value="Detalles" class="botonDetalles">
               </form>
             </div>
-            <a name="hola">
             <div class="formularios">
-              <form action="index.php?#hola" method="GET">
+              <form action="index.php" method="GET">
                 <input type="hidden" name="codigo" value="<?= $clave?>">
                 <input type="hidden" name="accion" value="comprar">
                 <input type="submit" value="comprar" class="botonComprar">

@@ -6,6 +6,7 @@ session_start();// Inicia la sesión
 if(!isset($_SESSION['carrito'])){
   $_SESSION['carrito'] = ["malaga" => 0, "city" => 0, "united" => 0, "psg" => 0];
 }
+$_SESSION['cupones'] = ["alejandro" => 0.80, "whopper" => 0.90, "descuentillo" => 0.95];
 
 ?>
 <!DOCTYPE html>
@@ -40,10 +41,12 @@ if(!isset($_SESSION['carrito'])){
       }
       
       if($_GET['accion'] == "aplicarCupon"){
-        if($_GET['cupon'] == "an"){
-          foreach ($articulos as $codigo => $elemento) {
-            if($_SESSION['carrito'][$codigo] > 0){
-              $articulos[$codigo]['precio'] = $articulos[$codigo]['precio'] * 0.80;
+        foreach ($_SESSION['cupones'] as $descuento => $cantidad){
+          if($_GET['cupon'] == $descuento){
+            foreach ($articulos as $codigo => $elemento) {
+              if($_SESSION['carrito'][$codigo] > 0){
+                $articulos[$codigo]['precio'] = $articulos[$codigo]['precio'] * $cantidad;
+              }
             }
           }
         }
@@ -96,7 +99,7 @@ if(!isset($_SESSION['carrito'])){
           </tr>
           <tr>
             <td>
-              <form action="realizarPedido.php" method="GET">
+              <form action="pedidoRealizado.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
                 <input type="hidden" name="accion" value="vaciarCarrito">
                 <input type="submit" value="Realizar pedido" class="realizarPedido" >
@@ -133,7 +136,7 @@ if(!isset($_SESSION['carrito'])){
               <input type="text" id="cupon" name="cupon" style="width: 100px;">
               <input type="hidden" name="codigo" value="<?=$codigo?>">
               <input type="hidden" name="accion" value="aplicarCupon">
-              <input type="submit" value="Usar Cupon">
+              <input type="submit" value="Usar Cupon" id="usarCupon">
             </form>
           </td>
         </tr>

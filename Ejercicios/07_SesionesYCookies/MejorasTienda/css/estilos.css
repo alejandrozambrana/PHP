@@ -197,3 +197,13 @@ body{
   margin-top: 50px;
   margin-left: 30px;
 }
+#usarCupon{
+  text-decoration: none;
+  padding: 8px;
+  font-weight: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #0099e6;
+  border: 2px solid #0099e6;
+  box-shadow: 2px 2px 6px 1px #737373;
+}
