@@ -32,21 +32,21 @@ if(!isset($_SESSION['carrito'])){
                       . "</br>• Innovador patrón a rayas con un degradado desde el pecho a la patente inferior."
           ],
       "city" => [ 
-          "equipo" => "Manchester City", 
+          "equipo" => "Man. City", 
           "precio" => 75, 
           "imagen" => "city.jpg", 
           "nombre" => "city",
           "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester City con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
           ],
       "united" => [ 
-          "equipo" => "Manchester United", 
+          "equipo" => "Man. United", 
           "precio" => 75, 
           "imagen" => "united.jpg", 
           "nombre" => "united",
           "Detalles" => "<b>CAMISETA OFICIAL</b> del Manchester United con tejido <b>100% poliéster</b></br>Camiseta <b>original</ utilizada por los jugadores del primer equipo"
           ],
       "psg" => [ 
-          "equipo" => "Paris Saint Germain", 
+          "equipo" => "P.S. Germain", 
           "precio" => 75, 
           "imagen" => "psg.jpg",
           "nombre" => "psg",
@@ -74,7 +74,7 @@ if(!isset($_SESSION['carrito'])){
             <div id="imagenes">
               <img src="imagenes/<?=$elemento['imagen']?>" width="160px" height="160px" border="1">
             <div><br>
-            Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
+            <b>Equipo</b>: <?=$elemento['equipo']?> </br> <b>Precio:</b> <?=$elemento['precio']?> €</br>
             <div class="formularios">
               <form action="carritoDeLaCompra_Detalles.php" method="GET" >
                 <input type="hidden" name="codigo" value="<?=$clave?>">
@@ -82,8 +82,9 @@ if(!isset($_SESSION['carrito'])){
                 <input type="submit" value="Detalles" class="botonDetalles">
               </form>
             </div>
+            <a name="hola">
             <div class="formularios">
-              <form action="index.php" method="GET">
+              <form action="index.php?#hola" method="GET">
                 <input type="hidden" name="codigo" value="<?= $clave?>">
                 <input type="hidden" name="accion" value="comprar">
                 <input type="submit" value="comprar" class="botonComprar">
@@ -118,7 +119,9 @@ if(!isset($_SESSION['carrito'])){
       }
       
       if($accion == "vaciarCarrito"){
-        
+        foreach ($articulos as $clave => $elemento) {
+          $_SESSION['carrito'][$elemento['nombre']] = 0;
+        }
       }
       
       if($accion == "modificarCantidad"){
@@ -149,37 +152,53 @@ if(!isset($_SESSION['carrito'])){
                 </form>
                 <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1">
               <div><br>
-              Equipo: <?=$elemento['equipo']?> </br> 
-              Precio: <?=$elemento['precio']?> €</br>
+              <b>Equipo:</b> <?=$elemento['equipo']?> </br> 
+              <b>Precio:</b> <?=$elemento['precio']?> €</br>
               <form action="index.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
                 <input type="hidden" name="accion" value="eliminar">
-                <input type="submit" value="Eliminar"class="botonEliminar">
+                <input type="submit" value="Eliminar" class="botonEliminar">
               </form>
             </td>
           </tr>
         <?php
+            $opcionesCarrito = 1;
           }
         }
+        
+        //pone el boton de realizar pedido y el de vaciarlo
+        if($opcionesCarrito == 1){
         ?>
           <tr>
+            <td><p>Total: <?php echo $total; ?> €</p></td>
+          </tr>
+          <tr>
             <td>
-              <p>Total: <?php echo $total; ?> €</p>
-              <?php
-              foreach ($articulos as $codigo => $elemento) {
-                if($_SESSION['carrito'][$codigo] > 0){
-              ?>
-                  <form action="index.php" method="GET">
-                    <input type="hidden" name="codigo" value="<?=$codigo?>">
-                    <input type="hidden" name="accion" value="vaciarCarrito">
-                    <input type="submit" value="Vaciar Cesta"class="vaciarCarro">
-                  </form>
-              <?php
-                }
-              }
-              ?>
+              <form action="realizarPedido.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="vaciarCarrito">
+                <input type="submit" value="Realizar pedido" class="realizarPedido" >
+              </form>
             </td>
           </tr>
+          <tr>
+            <td>
+              <form action="index.php" method="GET">
+                <input type="hidden" name="accion" value="vaciarCarrito">
+                <input type="submit" value="Vaciar Cesta" class="vaciarCarro">
+              </form>
+            </td>
+          </tr>
+        <?php
+        } else {
+        ?>
+          <tr>
+            <td><p style="text-align: center;">Carrito Vacio</p>
+            </td>
+          </tr>
+        <?php
+        }
+        ?>
       </table>
       <!-- -------------------------------------------------- -->
     </div>

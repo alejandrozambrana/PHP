@@ -26,58 +26,10 @@ if(!isset($_SESSION['carrito'])){
       <h1>La Camisetilla</h1>
     </div>
     <div id="contenedor"> 
-      <!--muestra Detalles del articulo-->
-      <table id="articulos">
-        <tr>
-          <td colspan="4"><h3><img src="imagenes/icoCamiseta.png" width="20px">Detalles</h3></td>
-        </tr>
-        <tr>
-        <?php
-        $codigo = $_GET['codigo'];
-        $accion = $_GET['accion'];
-        foreach ($articulos as $clave => $elemento) {
-          if($codigo == $elemento['nombre']){
-        ?>
-          
-          <td id="camisetaImagen">
-            <div id="imagenes">
-              <img src="imagenes/<?=$elemento['imagen']?>" width="360px" border="1">
-            <div><br>
-            <b>Equipo</b>: <?=$elemento['equipo']?> </br> <b>Precio:</b> <?=$elemento['precio']?> €</br></br>
-            <div id="formularios">
-              <form action="carritoDeLaCompra_Detalles.php" method="GET">
-                <input type="hidden" name="codigo" value="<?=$clave?>">
-                <input type="hidden" name="accion" value="comprar">
-                <input type="submit" value="Comprar" class="botonComprar">
-              </form>
-            </div>
-            <div id="botonVolver" >
-              <form action="index.php" method="GET">
-                <input type="submit" value="Volver" class="botonEliminar" >
-              </form>
-            </div>
-          </td>
-          
-          <td id="texto">
-            <p><?=$elemento['Detalles']?></p>
-          </td>
-        <?php
-          }
-        }
-        ?>
-        </tr>
-        
-      </table>
-      <!-- -------------------------------------------------- -->
-
-      <!--carrito de la compra -->
+     <!--carrito de la compra -->
       <?php
       $codigo = $_GET['codigo'];
       $accion = $_GET['accion'];
-      
-      if($accion == "comprar"){
-        $_SESSION['carrito'][$codigo]++;
-      }
       
       if($accion == "eliminar"){
         $_SESSION['carrito'][$codigo] = 0;
@@ -87,17 +39,21 @@ if(!isset($_SESSION['carrito'])){
         $_SESSION['carrito'][$codigo] = $_GET['cantidad'];
       }
       
-      if($accion == "vaciarCarrito"){
-        foreach ($articulos as $clave => $elemento) {
-          $_SESSION['carrito'][$elemento['nombre']] = 0;
+      if($_GET['accion'] == "aplicarCupon"){
+        if($_GET['cupon'] == "an"){
+          foreach ($articulos as $codigo => $elemento) {
+            if($_SESSION['carrito'][$codigo] > 0){
+              $articulos[$codigo]['precio'] = $articulos[$codigo]['precio'] * 0.80;
+            }
+          }
         }
       }
 
       $total = 0;
       ?>
-      <table id="carrito">
+      <table id="articulos">
         <tr>
-          <td colspan="4"><h3> <img src="imagenes/carrito.png" width="20px"> Carrito</h3></td>
+         <td colspan="4"><h3><img src="imagenes/icoCamiseta.png" width="20px">Detalle del Pedido</h3></td>
         </tr>
 
         <?php
@@ -105,18 +61,10 @@ if(!isset($_SESSION['carrito'])){
           if($_SESSION['carrito'][$codigo] > 0){
             $total = $total + ($_SESSION['carrito'][$codigo] * $elemento['precio']);
         ?>
-          <tr>
-            <td>
-              <div id="imagenes">
-                <form action="carritoDeLaCompra_Detalles.php" method="GET">
-                  <label for="cantidad">Cantidad:</label>
-                  <input type="number" id="cantidad" name="cantidad" value="<?= $_SESSION['carrito'][$codigo]; ?>" max="99" style="width: 35px; margin-bottom: 5px;" >
-                  <input type="hidden" name="codigo" value="<?=$codigo?>">
-                  <input type="hidden" name="accion" value="modificarCantidad">
-                  <input type="submit" value="Ok" class="botonDetalles">
-                </form>
-                <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1">
-              <div><br>
+        
+          <tr class="pedirProductos">  
+            <td><img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1"></td>
+            <td class="centrarDatosProductos">
               <b>Equipo</b>: <?=$elemento['equipo']?> </br> <b>Precio:</b> <?=$elemento['precio']?> €</br>
               <form action="carritoDeLaCompra_Detalles.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
@@ -124,8 +72,18 @@ if(!isset($_SESSION['carrito'])){
                 <input type="submit" value="Eliminar" class="botonEliminar">
               </form>
             </td>
+            <td class="centrarDatosProductos">
+              <form action="carritoDeLaCompra_Detalles.php" method="GET">
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" id="cantidad" name="cantidad" value="<?= $_SESSION['carrito'][$codigo]; ?>" max="99" style="width: 35px; margin-bottom: 5px;" >
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="modificarCantidad">
+                <input type="submit" value="Ok" class="botonDetalles">
+              </form>
+            </td>
           </tr>
-          <?php
+    
+        <?php
             $opcionesCarrito = 1;
           }
         }
@@ -147,8 +105,7 @@ if(!isset($_SESSION['carrito'])){
           </tr>
           <tr>
             <td>
-              <form action="carritoDeLaCompra_Detalles.php" method="GET">
-                <input type="hidden" name="codigo" value="<?=$codigo?>">
+              <form action="index.php" method="GET">
                 <input type="hidden" name="accion" value="vaciarCarrito">
                 <input type="submit" value="Vaciar Cesta" class="vaciarCarro">
               </form>
@@ -166,6 +123,24 @@ if(!isset($_SESSION['carrito'])){
         ?>
       </table>
       <!-- -------------------------------------------------- -->
+      <table id="carrito">
+        <tr>
+          <td colspan="4"><h3> <img src="imagenes/envio.png" width="20px"> Envio</h3></td>
+        </tr>
+        <tr>
+          <td class="centrarDatosProductos">
+            <form action="realizarPedido.php" method="GET">
+              <input type="text" id="cupon" name="cupon" style="width: 100px;">
+              <input type="hidden" name="codigo" value="<?=$codigo?>">
+              <input type="hidden" name="accion" value="aplicarCupon">
+              <input type="submit" value="Usar Cupon">
+            </form>
+          </td>
+        </tr>
+        
+      </table>
+      <!-- -------------------------------------------------- -->
+      
     </div>
   </body>
 </html>

@@ -29,7 +29,7 @@ if(!isset($_SESSION['carrito'])){
       <!--muestra Detalles del articulo-->
       <table id="articulos">
         <tr>
-          <td colspan="4"><h3>Administracion</h3></td>
+          <td colspan="4"><h3><img src="imagenes/icoCamiseta.png" width="20px">Administracion</h3></td>
         </tr>
         <tr>
         <?php
@@ -42,7 +42,7 @@ if(!isset($_SESSION['carrito'])){
             <div id="imagenes">
               <img src="imagenes/<?=$elemento['imagen']?>" width="360px" border="1">
             </div><br>
-            Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br></br>
+            <b>Equipo</b>: <?=$elemento['equipo']?> </br> <b>Precio:</b> <?=$elemento['precio']?> €</br></br>
             <div class="formularios" style="margin-right: 10px;">
               <form action="administracion_producto.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$clave?>">
@@ -80,6 +80,12 @@ if(!isset($_SESSION['carrito'])){
       
       if($accion == "eliminar"){
         $_SESSION['carrito'][$codigo] = 0;
+      }
+      
+      if($accion == "vaciarCarrito"){
+        foreach ($articulos as $clave => $elemento) {
+          $_SESSION['carrito'][$elemento['nombre']] = 0;
+        }
       }
       
       if($accion == "modificarProducto"){
@@ -151,7 +157,7 @@ if(!isset($_SESSION['carrito'])){
                 </form>
                 <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1">
               <div><br>
-              Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
+             <b>Equipo</b>: <?=$elemento['equipo']?> </br> <b>Precio:</b> <?=$elemento['precio']?> €</br>
               <form action="administracion_producto.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
                 <input type="hidden" name="accion" value="eliminar">
@@ -159,11 +165,43 @@ if(!isset($_SESSION['carrito'])){
               </form>
             </td>
           </tr>
+          <?php
+            $opcionesCarrito = 1;
+          }
+        }
+        
+        //pone el boton de realizar pedido y el de vaciarlo
+        if($opcionesCarrito == 1){
+        ?>
           <tr>
-            <td>Total: <?php echo $total; ?> €</td>
+            <td><p>Total: <?php echo $total; ?> €</p></td>
+          </tr>
+          <tr>
+            <td>
+              <form action="realizarPedido.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="vaciarCarrito">
+                <input type="submit" value="Realizar pedido" class="realizarPedido" >
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <form action="administracion_producto.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="vaciarCarrito">
+                <input type="submit" value="Vaciar Cesta" class="vaciarCarro">
+              </form>
+            </td>
           </tr>
         <?php
-          }
+        } else {
+        ?>
+          <tr>
+            <td><p style="text-align: center;">Carrito Vacio</p>
+            </td>
+          </tr>
+        <?php
         }
         ?>
       </table>

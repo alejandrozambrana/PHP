@@ -30,7 +30,7 @@ body{
   box-shadow: 5px 5px 5px #737373;
   border-radius:10px;
   position: absolute;
-  
+  padding-bottom: 50px;
 }
 
 #articulos tr td h3 {
@@ -63,16 +63,15 @@ body{
 
 #imagenes {
   margin: 0 auto;
-  margin: 10px;
-  
+  margin: 10px;  
 }
 #carrito{
-  margin-right: 100px;
+  margin-right: 90px;
   float: right;
   
 }
 #carrito tr td{
-  width: 250px;  
+  width: 250px; 
 }
 #carrito tr td h3 {
   border-bottom: 2px solid #66ccff;
@@ -85,9 +84,9 @@ body{
   font-weight: 10px;
   font-size: 15px;
   color: white;
-  background-color: #66ccff;
+  background-color: #0099e6;
   border-radius: 16px;
-  border: 2px solid #66ccff;
+  border: 2px solid #0099e6;
   box-shadow: 2px 2px 6px 1px #737373;
   
 }
@@ -97,9 +96,9 @@ body{
   font-weight: 10px;
   font-size: 15px;
   color: white;
-  background-color: #0099e6;
+  background-color: #66ccff;
   border-radius: 16px;
-  border: 2px solid #0099e6;
+  border: 2px solid #66ccff;
   box-shadow: 2px 2px 6px 1px #737373;
 }
 .botonDetalles{
@@ -165,4 +164,36 @@ body{
   color: #4d4d4d;
   margin-left: 160px;
   margin-bottom: 10px;
+}
+.realizarPedido{
+  text-decoration: none;
+  padding: 8px;
+  font-weight: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #0099e6;
+  border-radius: 16px;
+  border: 2px solid #0099e6;
+  box-shadow: 2px 2px 6px 1px #737373;
+  width: 100%;
+  margin-bottom: 15px; 
+}
+.realizarPedido:hover{
+  text-decoration: none;
+  padding: 8px;
+  font-weight: 10px;
+  font-size: 15px;
+  color: white;
+  background-color: #66ccff;
+  border-radius: 16px;
+  border: 2px solid #66ccff;
+  box-shadow: 2px 2px 6px 1px #737373;
+}
+.pedirProductos{
+  background-color: #e6e6e6;
+  box-shadow: 2px 2px 6px 1px #737373;
+}
+.centrarDatosProductos{
+  margin-top: 50px;
+  margin-left: 30px;
 }

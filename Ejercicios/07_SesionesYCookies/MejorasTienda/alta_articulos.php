@@ -84,6 +84,12 @@ if(!isset($_SESSION['carrito'])){
         $_SESSION['carrito'][$codigo] = $_GET['cantidad'];
       }
       
+      if($accion == "vaciarCarrito"){
+        foreach ($articulos as $clave => $elemento) {
+          $_SESSION['carrito'][$elemento['nombre']] = 0;
+        }
+      }
+      
       $total = 0;
       ?>
       <table id="carrito">
@@ -108,7 +114,7 @@ if(!isset($_SESSION['carrito'])){
                 </form>
                 <img src="imagenes/<?=$elemento['imagen']?>" width="160px" border="1">
               <div><br>
-              Equipo: <?=$elemento['equipo']?> </br> Precio: <?=$elemento['precio']?> €</br>
+              <b>Equipo</b>: <?=$elemento['equipo']?> </br> <b>Precio:</b> <?=$elemento['precio']?> €</br>
               <form action="alta_articulos.php" method="GET">
                 <input type="hidden" name="codigo" value="<?=$codigo?>">
                 <input type="hidden" name="accion" value="eliminar">
@@ -116,11 +122,43 @@ if(!isset($_SESSION['carrito'])){
               </form>
             </td>
           </tr>
+          <?php
+            $opcionesCarrito = 1;
+          }
+        }
+        
+        //pone el boton de realizar pedido y el de vaciarlo
+        if($opcionesCarrito == 1){
+        ?>
           <tr>
-            <td>Total: <?php echo $total; ?> €</td>
+            <td><p>Total: <?php echo $total; ?> €</p></td>
+          </tr>
+          <tr>
+            <td>
+              <form action="realizarPedido.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="vaciarCarrito">
+                <input type="submit" value="Realizar pedido" class="realizarPedido" >
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <form action="alta_articulos.php" method="GET">
+                <input type="hidden" name="codigo" value="<?=$codigo?>">
+                <input type="hidden" name="accion" value="vaciarCarrito">
+                <input type="submit" value="Vaciar Cesta" class="vaciarCarro">
+              </form>
+            </td>
           </tr>
         <?php
-          }
+        } else {
+        ?>
+          <tr>
+            <td><p style="text-align: center;">Carrito Vacio</p>
+            </td>
+          </tr>
+        <?php
         }
         ?>
       </table>
