@@ -53,7 +53,7 @@ cambiado deberán permanecer inalterados en la base de datos.
     //con esto se realiza una consulta
     $consulta = $conexion -> query("select * from cliente");   
     
-    //comprueba la accion
+   //comprueba la accion
     if($_GET['accion'] == "Eliminar") {
       $borra = "DELETE FROM cliente WHERE dni='$_GET[dni]'";
       $conexion->exec($borra);
@@ -100,8 +100,9 @@ cambiado deberán permanecer inalterados en la base de datos.
           <td></td>
         </tr>
       <?php
-      $listadoClientes = "SELECT * FROM cliente ORDER BY nombre LIMIT ".(($_SESSION['pagina'] - 1) * 5).", 5";
-      $consulta = $conexion->exec($listadoClientes);
+     //saca los clientes por pagina
+     $listadoClientes = "SELECT * FROM cliente ORDER BY nombre LIMIT ".(($_SESSION['pagina'] - 1) * 5).", 5";
+     $consulta = $conexion->query($listadoClientes);
       
       //con este while saca todos los datos de la consulta
       while ($cliente = $consulta->fetchObject()) {
