@@ -173,18 +173,19 @@ cambiado deberán permanecer inalterados en la base de datos.
     if($accion == "anadir"){
     ?>
       <div class="contenedorTabla">
-      <table class="striped centered">
-        <tr>
-          <form action="mantenimientoClientes.php" method="get">
-            <td><b><input type="text" name="dni" placeholder="DNI"></b></td>
-            <td><b><input type="text" name="nombre" placeholder="Nombre"></b></td>
-            <td><b><input type="text" name="direccion" placeholder="Direccion"></b></td>
-            <td><b><input type="tel" name="telefono" placeholder="Telefono"></b></td>
-            <input type="hidden" name="accion" value="nuevoCliente">
-            <td><button class="btn-floating btn-large blue"><i class="large material-icons">add</i></button></td>
-          </form>
-        </tr>
-      </table>
+        <table class="striped centered">
+          <tr>
+            <form action="mantenimientoClientes.php" method="get">
+              <td><b><input type="text" name="dni" placeholder="DNI"></b></td>
+              <td><b><input type="text" name="nombre" placeholder="Nombre"></b></td>
+              <td><b><input type="text" name="direccion" placeholder="Direccion"></b></td>
+              <td><b><input type="tel" name="telefono" placeholder="Telefono"></b></td>
+              <input type="hidden" name="accion" value="nuevoCliente">
+              <td><button class="btn-floating btn-large blue"><i class="large material-icons">add</i></button></td>
+            </form>
+          </tr>
+        </table>
+      </div>
     <?php
     }
    ?>
